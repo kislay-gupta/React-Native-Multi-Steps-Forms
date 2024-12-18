@@ -7,7 +7,8 @@ export default function ConfirmForm() {
   const onNext = () => {
     // validate the form
     // redirect
-    router.push("/");
+    router.dismissAll();
+    router.back();
   };
   return (
     <View style={styles.container}>
