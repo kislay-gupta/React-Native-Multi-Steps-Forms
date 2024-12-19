@@ -1,8 +1,18 @@
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import React, { useState } from "react";
 import CustomButton from "../../components/CustomButton";
 import { router } from "expo-router";
 import CustomTextInput from "../../components/CustomTextInput";
+import { SafeAreaView } from "react-native-safe-area-context";
+import KeyboardAwareScreen from "../../components/KeyboardAwareScreen";
 
 export default function PersonalDetailsForm() {
   const [fullName, setFullName] = useState("");
@@ -13,8 +23,11 @@ export default function PersonalDetailsForm() {
     router.push("/checkout/payment");
   };
   return (
-    <View style={styles.container}>
-      <Text>PersonalDetailsForm</Text>
+    <KeyboardAwareScreen>
+      <CustomTextInput label="Full name" placeholder="John doe" />
+      <CustomTextInput label="Full name" placeholder="John doe" />
+      <CustomTextInput label="Full name" placeholder="John doe" />
+      <CustomTextInput label="Full name" placeholder="John doe" />
       <CustomTextInput label="Full name" placeholder="John doe" />
       <CustomTextInput
         label="Address"
@@ -36,14 +49,14 @@ export default function PersonalDetailsForm() {
       </View>
       <CustomTextInput label="Phone number" placeholder="+91" inputMode="tel" />
       <CustomButton title="Next" onPress={onNext} style={styles.button} />
-    </View>
+    </KeyboardAwareScreen>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    flex: 1,
+    flexGrow: 1,
     padding: 10,
     gap: 5,
   },

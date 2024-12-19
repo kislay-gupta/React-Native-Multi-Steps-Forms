@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import CustomButton from "../../components/CustomButton";
 import { router } from "expo-router";
+import KeyboardAwareScreen from "../../components/KeyboardAwareScreen";
 
 export default function PaymentDetailsForm() {
   const onNext = () => {
@@ -10,10 +11,10 @@ export default function PaymentDetailsForm() {
     router.push("/checkout/confirm");
   };
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScreen>
       <Text>PaymentDetailsForm</Text>
       <CustomButton title="Next" onPress={onNext} style={styles.button} />
-    </View>
+    </KeyboardAwareScreen>
   );
 }
 
