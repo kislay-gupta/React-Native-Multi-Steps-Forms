@@ -19,11 +19,25 @@ import {
   FormProvider,
   SubmitHandler,
 } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+const PersonalInfoSchema = z.object({
+  fullName: z
+    .string({ message: "Full name is required!" })
+    .min(1, { message: "Full name must be longer than 1" }),
+  address: z.string().min(1, { message: "Please provide your address!" }),
+  city: z.string().min(1, { message: "City is required!" }),
+  postCode: z.string().min(1, { message: "Postal code is required!" }),
+  phoneNo: z.string().min(1, { message: "Phone is required!" }),
+});
+type PersonalInfo = z.infer<typeof PersonalInfoSchema>;
 export default function PersonalDetailsForm() {
-  const form = useForm();
+  const form = useForm<PersonalInfo>({
+    resolver: zodResolver(PersonalInfoSchema),
+  });
   const [fullName, setFullName] = useState("");
   console.log(form.formState.errors);
-  const onNext: SubmitHandler<any> = (data) => {
+  const onNext: SubmitHandler<PersonalInfo> = (data) => {
     // validate the form
     console.log(data);
     // redirect
