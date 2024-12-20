@@ -12,14 +12,17 @@ export default function KeyboardAwareScreen({ children }: PropsWithChildren) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
+      style={{ flex: 1, backgroundColor: "white" }}
       keyboardVerticalOffset={110}
     >
       <ScrollView
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
       >
-        <SafeAreaView edges={["bottom"]} style={{ flex: 1 }}>
+        <SafeAreaView
+          edges={["bottom"]}
+          style={{ flex: 1, backgroundColor: "white" }}
+        >
           {children}
         </SafeAreaView>
       </ScrollView>
