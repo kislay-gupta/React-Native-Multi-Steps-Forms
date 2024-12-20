@@ -6,28 +6,22 @@ import KeyboardAwareScreen from "../../components/KeyboardAwareScreen";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import CustomTextInput from "../../components/CustomTextInput";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-const PaymentDetailsSchema = z.object({
-  cardNo: z
-    .string({ message: "please enter a valid number" })
-    .length(10, { message: "please enter a 10 digit value" }),
-  expires: z
-    .string({ message: "please enter a valid date" })
-    .regex(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/),
-  cvv: z.coerce
-    .number({ message: "please enter a valid cvv" })
-    .min(1000)
-    .max(9999),
-});
-type PaymentForm = z.infer<typeof PaymentDetailsSchema>;
+import {
+  PaymentForm,
+  PaymentDetailsSchema,
+  useCheckoutForm,
+} from "../../context/CheckoutFormProvider";
+
 export default function PaymentDetailsForm() {
+  const { setPaymentInfo, paymentInfo } = useCheckoutForm();
   const form = useForm<PaymentForm>({
     resolver: zodResolver(PaymentDetailsSchema),
+    defaultValues: paymentInfo,
   });
-
   const onNext: SubmitHandler<PaymentForm> = (data) => {
     // validate the form
     // redirect
+    setPaymentInfo(data);
     console.log(data);
     router.push("/checkout/confirm");
   };

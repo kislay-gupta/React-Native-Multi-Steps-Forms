@@ -3,21 +3,9 @@ import React from "react";
 import CustomButton from "../../components/CustomButton";
 import { Link, router } from "expo-router";
 import KeyboardAwareScreen from "../../components/KeyboardAwareScreen";
-const personalInfo = {
-  fullName: "Vadim Savin",
-  address: "Poblenou",
-  city: "Barcelona",
-  postcode: "1234",
-  phone: "60123123123",
-  country: "ES",
-};
-
-const paymentInfo = {
-  cardNumber: "1234123412341234",
-  expires: "01/30",
-  cvv: "123",
-};
+import { useCheckoutForm } from "../../context/CheckoutFormProvider";
 export default function ConfirmForm() {
+  const { personalInfo, paymentInfo, onSubmit } = useCheckoutForm();
   const onNext = () => {
     // validate the form
     // redirect
@@ -64,7 +52,7 @@ export default function ConfirmForm() {
           </View>
         )}
       </View>
-      <CustomButton title="Submit" onPress={onNext} style={styles.button} />
+      <CustomButton title="Submit" onPress={onSubmit} style={styles.button} />
     </KeyboardAwareScreen>
   );
 }
