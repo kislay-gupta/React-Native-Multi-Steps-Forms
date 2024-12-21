@@ -13,6 +13,7 @@ import {
 } from "../../context/CheckoutFormProvider";
 import CustomCheckbox from "../../components/CustomCheckbox";
 import CustomSwitch from "../../components/CustomSwitch";
+import CustomDateTimePicker from "../../components/CustomDateTimePicker";
 
 export default function PaymentDetailsForm() {
   const { setPaymentInfo, paymentInfo } = useCheckoutForm();
@@ -37,6 +38,7 @@ export default function PaymentDetailsForm() {
             label="Expires"
             containerStyle={{ flex: 1 }}
           />
+
           <CustomTextInput
             name="cvv"
             label="CVV"

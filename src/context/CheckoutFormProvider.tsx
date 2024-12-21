@@ -16,6 +16,7 @@ export const PersonalInfoSchema = z.object({
   postCode: z.string().min(1, { message: "Postal code is required!" }),
   country: z.string().length(2),
   phoneNo: z.string().min(1, { message: "Phone is required!" }),
+  birthDate: z.date(),
 });
 export const PaymentDetailsSchema = z.object({
   cardNo: z
