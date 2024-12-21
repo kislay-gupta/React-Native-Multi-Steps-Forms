@@ -28,6 +28,8 @@ export const PaymentDetailsSchema = z.object({
     .number({ message: "please enter a valid cvv" })
     .min(1000)
     .max(9999),
+  saveCard: z.boolean().optional(),
+  switchValue: z.boolean().optional(),
 });
 
 export type PersonalInfo = z.infer<typeof PersonalInfoSchema>;
