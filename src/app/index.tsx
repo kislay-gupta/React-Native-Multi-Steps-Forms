@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
@@ -8,7 +9,7 @@ export default function App() {
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Home" }} />
       <Link href="/checkout" asChild>
-        <CustomButton title="Checkout" />
+        <CustomButton title="Checkout soon" />
       </Link>
       <StatusBar style="auto" />
     </View>

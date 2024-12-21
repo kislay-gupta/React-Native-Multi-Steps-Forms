@@ -11,7 +11,9 @@ import {
   PersonalInfoSchema,
   useCheckoutForm,
 } from "../../context/CheckoutFormProvider";
-
+import RNPickerSelect from "react-native-picker-select";
+import countries from "../../../assets/countries.json";
+import CustomPicker from "../../components/CustomPicker";
 export default function PersonalDetailsForm() {
   const { setPersonalInfo, personalInfo } = useCheckoutForm();
   const form = useForm<PersonalInfo>({
@@ -48,7 +50,6 @@ export default function PersonalDetailsForm() {
           label="Full name"
           placeholder="John doe"
         />
-
         <CustomTextInput
           name="address"
           label="Address"
@@ -70,6 +71,36 @@ export default function PersonalDetailsForm() {
             containerStyle={{ flex: 1 }}
           />
         </View>
+
+        <CustomPicker
+          name="country"
+          placeholder={{ label: "Country" }}
+          items={countries.map((country) => ({
+            label: country.name,
+            value: country.code,
+          }))}
+          style={{
+            viewContainer: {
+              marginTop: 4,
+              marginBottom: 2,
+            },
+            inputIOS: {
+              borderColor: "gainsboro",
+              borderWidth: 1,
+              width: "100%",
+              padding: 10,
+              borderRadius: 5,
+            },
+            inputAndroid: {
+              borderColor: "gainsboro",
+              borderWidth: 1,
+              width: "100%",
+              padding: 10,
+              borderRadius: 5,
+            },
+          }}
+        />
+
         <CustomTextInput
           name="phoneNo"
           label="Phone number"

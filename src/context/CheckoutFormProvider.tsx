@@ -14,6 +14,7 @@ export const PersonalInfoSchema = z.object({
   address: z.string().min(1, { message: "Please provide your address!" }),
   city: z.string().min(1, { message: "City is required!" }),
   postCode: z.string().min(1, { message: "Postal code is required!" }),
+  country: z.string().length(2),
   phoneNo: z.string().min(1, { message: "Phone is required!" }),
 });
 export const PaymentDetailsSchema = z.object({
